@@ -3,5 +3,7 @@ const { socket } = require('socket.io')
 const io=require('socket.io')(3000)
 
 io.on('connection', socket =>{
-    socket.emit('chat-message','HELLO Sevinj')
+    socket.on('send-chat-message', message =>{
+        socket.broadcast.emit('chat-message', message)
+    })
 })
